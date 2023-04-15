@@ -6,12 +6,20 @@ import {
   ForeignKey,
 } from "sequelize-typescript";
 import { User } from "./user";
+import IRegisterAttributes from "../interfaces/IRegisterAttributes";
+import { Optional } from "sequelize";
+
+interface IDBRegisterCreationAttributes
+  extends Optional<IRegisterAttributes, "id"> {}
 
 @Table({
   timestamps: false,
   tableName: "registers",
 })
-export class Register extends Model {
+export class Register
+  extends Model<IDBRegisterCreationAttributes>
+  implements IDBRegisterCreationAttributes
+{
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -35,5 +43,5 @@ export class Register extends Model {
     type: DataType.DATE,
     allowNull: false,
   })
-  register_at!: string;
+  register_at!: Date;
 }

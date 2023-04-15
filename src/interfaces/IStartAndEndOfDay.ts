@@ -1,4 +1,4 @@
 export default interface IStartAndEndOfDay {
-    start: Date,
-    end: Date,
+  start: Date;
+  end: Date;
 }

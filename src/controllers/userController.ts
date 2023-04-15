@@ -19,7 +19,7 @@ export default class UserController {
 
     try {
       var user = await User.create({
-        code: Utils.makeUsercode(7).toUpperCase(),
+        code: Utils.makeUsercode(7),
         name,
       });
       res.status(201).json(user);
@@ -42,12 +42,10 @@ export default class UserController {
     try {
       var user = await User.findByPk(code);
       if (!user) {
-        res
-          .status(404)
-          .json({
-            message: "Usuário não encontrado",
-            errors: [],
-          } as IResponseError);
+        res.status(404).json({
+          message: "Usuário não encontrado",
+          errors: [],
+        } as IResponseError);
         return;
       }
       const token = jwt.sign({ user }, process.env.SECRET!, {
@@ -55,7 +53,7 @@ export default class UserController {
       });
       res.json({ auth: true, token: token });
     } catch (err) {
-      res.status(500).json(err!.toString());
+      res.status(500).json({ message: err!.toString() });
     }
   }
 }
