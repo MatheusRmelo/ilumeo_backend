@@ -1,5 +1,4 @@
-import { Router, Request, Response } from 'express';
-import IResponseError from '../interfaces/IResponseError';
+import { Router } from 'express';
 import userController from '../controllers/userController';
 
 const router = Router();

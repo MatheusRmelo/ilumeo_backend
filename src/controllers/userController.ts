@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import IResponseError from '../interfaces/IResponseError';
 import { User } from '../models/user';
 import Utils from '../utils';
+import jwt from 'jsonwebtoken';
 
 export default class userController {
 
@@ -42,7 +43,10 @@ export default class userController {
                 res.status(404).json({message: 'Usuário não encontrado', errors: []} as IResponseError);
                 return;
             }
-            res.status(200).json(user);
+            const token = jwt.sign({ user }, process.env.SECRET!, {
+                expiresIn: '2 days',
+            });
+            res.json({ auth: true, token: token });
         }catch(err){
             res.status(500).json(err!.toString());
         }
