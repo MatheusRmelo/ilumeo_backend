@@ -4,7 +4,7 @@ import { User } from "../models/user";
 import Utils from "../utils";
 import jwt from "jsonwebtoken";
 
-export default class userController {
+export default class UserController {
   public static async create(req: Request, res: Response) {
     let name = req.body.name;
     if (!name) {
