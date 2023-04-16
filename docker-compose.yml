@@ -1,31 +1,35 @@
-version: "3.9"
-networks:
-  ilumeo:
+version: "3"
 services:
   app:
-    restart: on-failure
-    build: .
+    build: ./
     depends_on:
-      - postgres
+      - database
+    ports:
+      - '3000:3000'
     environment:
+      PSQL_HOST: database
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
       PORT: 3000
-    depends_on:
-      - postgres
-    links:
-      - postgres
-    ports:
-      - "3000:3000"
-    command: npm run dev
+  # client:
+  #   build: ./client
+  #   image: react_client
+  #   links:
+  #     - app
+  #   working_dir: /home/node/app/client
+  #   volumes:
+  #     - ./:/home/node/app
+  #   ports:
+  #     - 3001:3001
+  #   command: npm run start
+  #   env_file:
+  #     - ./client/.env
+  database:
+    image: postgres:9.6.8-alpine
     volumes:
-      - .:/app/
-      - /app/node_modules
-    networks:
-      - ilumeo
-
-  postgres:
-    image: postgres:11
+      - database:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-    environment:
-    networks:
-      - ilumeo
+      - '3030:5432'
+volumes:
+  database:

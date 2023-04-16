@@ -6,10 +6,10 @@ dotenv.config();
 
 const connection = new Sequelize({
   dialect: "postgres",
-  host: process.env.DB_HOST || "localhost",
-  username: process.env.DB_USER as string,
-  password: process.env.DB_PASSWORD as string,
-  database: process.env.DB_NAME as string,
+  host: process.env.PSQL_HOST || "localhost",
+  username: process.env.POSTGRES_USER as string,
+  password: process.env.POSTGRES_PASSWORD as string,
+  database: process.env.POSTGRES_DB as string,
   logging: false,
   models: [User, Register],
 });
