@@ -20,7 +20,7 @@ rode como produção usando `npm run build` e depois `node dist/server.js`
 QUOkXwK,GM7K0QO,4SXXFMf
 
 ## Criar usuário
-Pode utilizar a rota post do backend em `/users`, passando apenas o nome e ser gerado um novo código de usuário.
+Pode utilizar a rota post do backend em `/users`, passando apenas o nome e será gerado um novo código de usuário.
 
 # Variaveís de ambiente
 PSQL_HOST=localhost                //Host postgress <br />
