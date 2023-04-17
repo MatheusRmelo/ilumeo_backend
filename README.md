@@ -12,7 +12,7 @@ Cria a imagem do docker do server node
 ## Node normal
 Instale tudo com `npm install`
 rode localmente usando `npm run dev`
-rode como produção usando `npm run build` e depos `node dist/server.js`
+rode como produção usando `npm run build` e depois `node dist/server.js`
 
 # Seed para testes
 `npx sequelize db:seed --seed tests_datas.js`
